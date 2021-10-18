@@ -1,6 +1,14 @@
-# Product API
+# Product Scanner
+Prices from all retail chains in Israel [are public](www.gov.il/he/Departments/legalInfo/cpfta_prices_regulations). One can finds hints about the format [here](https://www.nevo.co.il/law_html/law01/501_131.htm). **Let's try to do something with this data!**
+
 ## Project Status
-> **POC:** it works _just_ well enough for an end-to-end demo.
+> **POC:** it works _just_ well enough for an end-to-end demo. [Click to see a video](https://youtube.com/shorts/M2fvLbaYfqc?feature=share
+):
+
+
+[![Kespenu Scanner Demo](https://img.youtube.com/vi/M2fvLbaYfqc/0.jpg)](http://www.youtube.com/watch?v=M2fvLbaYfqc)
+
+
 
 Scan a product barcode from the web application to see:
 - Price/promotions (at the Shufersal next to where I live...) 
@@ -8,9 +16,9 @@ Scan a product barcode from the web application to see:
 - [openfoodfacts](https://world.openfoodfacts.org/) info if available
 
 ## Dependencies
-- `python3.8`, `pip-compile`
-- `pip install -r requirements.txt` (ideally use `virtualenv`...). When you update packages edit `requirments.in` and call `pip-compile requirements.in`.
 - `nodejs`
+- `python3.8`
+- `pip install -r requirements.txt` (ideally use `virtualenv`...). When you update packages edit `requirments.in` and call `pip-compile requirements.in`.
 
 ## Run
 To start the app:

@@ -8,6 +8,8 @@
 --trusted-host pypi.org
 --trusted-host files.pythonhosted.org
 
+pip-compile
+
 anyio==3.3.1              # via httpcore
 asgiref==3.4.1            # via uvicorn
 beautifulsoup4==4.10.0    # via -r requirements.in
