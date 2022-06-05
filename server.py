@@ -25,7 +25,7 @@ class PriceSource(Enum):
 
 from models import Chain, DataFileType
 from promo import Promo
-from shufersal import product_details
+from shufersal import barcode_metadata
 from openfoodfacts import db as openfoodfacts_db
 
 shufersal = Chain(
@@ -73,7 +73,7 @@ def get_barcode(barcode_id: str):
         **data,
         "item": items.get(barcode_id),
         "meta": {
-            "shufersal": product_details(barcode_id)
+            "shufersal": barcode_metadata(barcode_id)
         },
         "prices": {
             "shufersal": prices.get(barcode_id),

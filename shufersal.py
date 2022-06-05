@@ -1,4 +1,6 @@
+import os
 import re
+from pathlib import Path
 
 import httpx
 # https://www.crummy.com/software/BeautifulSoup/bs4/doc/
@@ -51,15 +53,25 @@ from db import make_db
 shufersal_db = make_db(db_path)
 
 
-def product_details(barcode: str, no_cache=False):
+def barcode_metadata(barcode: str, no_cache=False):
     if barcode in shufersal_db and not no_cache:
         return shufersal_db[barcode]
-    # TODO: store the html somewhere to avoid having to re-fetch it
-    #       if we find a way to extra more data 
-    url =   f"https://www.shufersal.co.il/online/he/p/P_{barcode}/json"
-    r = httpx.get(url, params={"cardContext[openFrom]": "CATEGORY"}, verify=False)
-    soup = BeautifulSoup(r.text, 'html.parser')
 
+    cache_dir = Path(os.environ['KASPENU_CACHE_DIR']) / 'shufersal'
+    cache_dir.mkdir(exist_ok=True, parents=True) # TODO: more to init
+    cache_path = cache_dir / f'P_{barcode}.json'
+    if cache_path.exists():
+        print(f'HIT {cache_path}')
+        text = cache_path.read_text()
+    else:
+        url = f"https://www.shufersal.co.il/online/he/p/P_{barcode}/json"
+        r = httpx.get(url, params={"cardContext[openFrom]": "CATEGORY"}, verify=False)
+        r.raise_for_status()
+        if "Forcepoint" in r.text: raise ValueError("Forcepoint")
+        text = r.text
+        cache_path.write_text(text)
+
+    soup = BeautifulSoup(text, 'html.parser')
     data = {}
     images = soup.find_all("img", itemprop="image")
     data['images'] = [i.get('src') for i in images]

@@ -1,5 +1,5 @@
 # reproducible builds
-pip-compile
+pip-tools
 
 # think of it as the "async-flask"
 # https://www.python-httpx.org/

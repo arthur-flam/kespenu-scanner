@@ -16,11 +16,17 @@ Scan a product barcode from the web application to see:
 - [openfoodfacts](https://world.openfoodfacts.org/) info if available
 
 ## Dependencies
-- `nodejs`
 - `python3.8`
 - `pip install -r requirements.txt` (ideally use `virtualenv`...). When you update packages edit `requirments.in` and call `pip-compile requirements.in`.
+- `nodejs` for the web application
 
 ## Run
+To run the tests:
+
+```bash
+green
+```
+
 To start the app:
 
 ```bash
