@@ -10,7 +10,6 @@ import gzip
 from enum import Enum
 from datetime import datetime
 from dataclasses import dataclass
-from os import lchown
 from typing import List, Dict, Optional
 
 import httpx
